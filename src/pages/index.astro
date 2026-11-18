@@ -1,38 +1,14 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import HeroSection from '../components/HeroSection.astro';
-import FeaturesSection from '../components/FeaturesSection.astro';
-import WhySetupSection from '../components/WhySetupSection.astro';
-import ProductsSection from '../components/ProductsSection.astro';
-import ContentSections from '../components/ContentSections.astro';
-import { t } from '../i18n';
-import { resolvePageSeo } from '../config/seo';
-import { faqPageSchema, organizationSchema, websiteSchema } from '../utils/schema';
-import { getLandingFaqs } from '../data/faq';
-import { webpSrc } from '../utils/responsiveImage';
-
-const seo = resolvePageSeo('/');
-const homeFaqs = getLandingFaqs();
-const heroLcpImage = webpSrc('/images/gameplay/dota-2-map-hack.png', 512);
+import { PRIMARY_CHECKOUT_PATH } from '../config/checkout';
+const shots = [
+  ['/images/7dtd/visuals.webp', '7 Days to Die visuals configuration preview'],
+  ['/images/7dtd/world.webp', '7 Days to Die world configuration preview'],
+  ['/images/7dtd/aim.webp', '7 Days to Die aim configuration preview'],
+  ['/images/7dtd/features.webp', '7 Days to Die feature configuration preview'],
+];
 ---
-
-<BaseLayout
-  title={seo.title}
-  description={seo.description}
-  jsonLd={[websiteSchema(), organizationSchema(), faqPageSchema(homeFaqs.map((f, i) => ({ num: String(i + 1).padStart(2, '0'), q: f.q, a: f.a.replace(/<[^>]+>/g, '') })))]}
->
-  <link
-    slot="head"
-    rel="preload"
-    as="image"
-    href={heroLcpImage}
-    type="image/webp"
-    media="(min-width: 1024px)"
-    fetchpriority="high"
-  />
-  <HeroSection />
-  <FeaturesSection />
-  <ProductsSection />
-  <WhySetupSection />
-  <ContentSections />
+<BaseLayout title="Days Cheats | 7 Days to Die PC Software" description="Days Cheats presents 7 Days to Die PC software, feature information, and player guides." ogImage="/images/7dtd/visuals.webp">
+  <section class="relative min-h-screen overflow-hidden bg-[#09090a] pt-32 text-white md:pt-40"><div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_28%,rgba(88,36,162,.28),transparent_35%),radial-gradient(circle_at_70%_75%,rgba(64,26,118,.16),transparent_34%)]"></div><div class="relative mx-auto grid max-w-[1690px] items-center gap-12 px-6 pb-16 lg:grid-cols-[1.02fr_.98fr] lg:px-12 lg:pb-8"><div class="pt-8 lg:pt-24"><span class="inline-flex rounded-full bg-zinc-800 px-5 py-2 text-sm font-bold tracking-wide text-zinc-100">PREMIUM PC PROVIDER</span><h1 class="mt-12 font-[family-name:var(--font-heading)] text-[59px] font-bold uppercase leading-[.95] tracking-tight sm:text-[81px]">7 DAYS TO DIE<br /><span class="text-[#853af1]">CHEATS FOR PC</span></h1><p class="mt-11 max-w-[650px] text-[18px] leading-8 text-zinc-400 sm:text-[21px]">Feature-rich PC software for 7 Days to Die, with visual configuration, world tools, saved profiles, and a focused interface.</p><div class="mt-11 flex flex-wrap gap-5"><a href="/products/7-days-to-die/" class="inline-flex items-center gap-4 rounded-[18px] bg-[#853af1] px-9 py-5 text-[21px] font-bold shadow-xl shadow-violet-950/50 transition hover:bg-[#964df7]">View products <span class="text-3xl font-normal">→</span></a><a href="/blogs/" class="inline-flex items-center gap-3 rounded-[18px] bg-zinc-800 px-9 py-5 text-[21px] font-bold transition hover:bg-zinc-700"><span class="text-3xl">◌</span>Read guides</a></div></div><div class="pb-2 lg:pt-24"><div class="rounded-[22px] border border-white/10 bg-[#171717] p-3 shadow-2xl shadow-black/40"><div class="overflow-hidden rounded-[14px] bg-[#101010] p-3"><img class="aspect-[16/9] w-full rounded-lg object-cover opacity-90" src={shots[0][0]} width="1200" height="675" alt={shots[0][1]} fetchpriority="high" /><div class="mt-3 flex justify-center gap-2">{shots.map(([src, alt], i) => <span class:list={['size-3 rounded-full', i === 0 ? 'w-8 bg-[#853af1]' : 'bg-zinc-600']} title={alt}></span>)}</div></div></div><div class="mt-7 grid grid-cols-2 gap-4"><article class="rounded-[20px] border border-white/10 bg-[#151515] p-5"><span class="rounded-xl border border-[#7032c8] px-3 py-2 text-xl text-[#a86cff]">◫</span><h2 class="mt-4 text-xl font-bold">Visual controls</h2><p class="text-zinc-400">Clear interface</p></article><article class="rounded-[20px] border border-white/10 bg-[#151515] p-5"><span class="rounded-xl border border-[#7032c8] px-3 py-2 text-xl text-[#a86cff]">◷</span><h2 class="mt-4 text-xl font-bold">PC focused</h2><p class="text-zinc-400">Product information</p></article><article class="rounded-[20px] border border-white/10 bg-[#151515] p-5"><span class="rounded-xl border border-[#7032c8] px-3 py-2 text-xl text-[#a86cff]">◉</span><h2 class="mt-4 text-xl font-bold">World tools</h2><p class="text-zinc-400">Configuration options</p></article><article class="rounded-[20px] border border-white/10 bg-[#151515] p-5"><span class="rounded-xl border border-[#7032c8] px-3 py-2 text-xl text-[#a86cff]">◌</span><h2 class="mt-4 text-xl font-bold">Guides</h2><p class="text-zinc-400">Player resources</p></article></div></div></div></section>
+  <section class="bg-[#101011] py-20 text-white"><div class="mx-auto max-w-[1280px] px-6"><p class="text-sm font-bold tracking-[.2em] text-[#9a55f6]">PRODUCT FEATURES</p><h2 class="mt-3 font-[family-name:var(--font-heading)] text-5xl font-bold uppercase">Explore what’s included</h2><div class="mt-10 grid gap-4 md:grid-cols-3"><article class="rounded-2xl border border-white/10 bg-[#171717] p-7"><h3 class="text-2xl font-bold">Visual settings</h3><p class="mt-3 text-zinc-400">Display options presented through a clean configuration panel.</p></article><article class="rounded-2xl border border-white/10 bg-[#171717] p-7"><h3 class="text-2xl font-bold">Overlay controls</h3><p class="mt-3 text-zinc-400">Keep available options easy to find and review.</p></article><article class="rounded-2xl border border-white/10 bg-[#171717] p-7"><h3 class="text-2xl font-bold">Config profiles</h3><p class="mt-3 text-zinc-400">Organise your preferred settings in clear profiles.</p></article></div></div></section>
 </BaseLayout>

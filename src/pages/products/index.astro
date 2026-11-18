@@ -1,0 +1,13 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { checkoutPath } from '../../config/checkout';
+const products = [
+  ['7 Days to Die Cheats', 'PC software information, supplied feature previews, and current availability notes.', '/products/7-days-to-die/', 'View product'],
+  ['HWID Spoofer', 'A separate merchant product. Check its current listing, requirements, and terms before purchase.', checkoutPath('hwidSpoofer'), 'View merchant listing'],
+  ['UGC Tool', 'A separate merchant product for account-recovery workflows. Recovery is never guaranteed.', checkoutPath('ugc'), 'View merchant listing'],
+  ['Cloud DMA', 'A separate merchant product. Verify compatibility and permitted use with the merchant first.', checkoutPath('cloudDma'), 'View merchant listing'],
+];
+---
+<BaseLayout title="Products | 7 Days to Die Cheats" description="Browse 7 Days to Die PC product information and related merchant products.">
+  <section class="pt-28 pb-20 md:pt-36"><div class="mx-auto max-w-6xl px-5"><p class="text-sm font-semibold uppercase tracking-[.2em] text-primary">PC product catalogue</p><h1 class="mt-3 font-[family-name:var(--font-heading)] text-5xl font-bold uppercase">Products</h1><p class="mt-4 max-w-2xl text-muted-foreground">Read the current listing carefully before any purchase. Product availability, rules, and compatibility can change.</p><div class="mt-10 grid gap-5 md:grid-cols-2">{products.map(([name, description, href, cta]) => <article class="rounded-2xl border border-border bg-card p-7"><h2 class="text-3xl font-bold">{name}</h2><p class="mt-3 leading-7 text-muted-foreground">{description}</p><a class="mt-6 inline-flex rounded-lg bg-primary px-5 py-3 font-semibold text-primary-foreground" href={href} rel={href.startsWith('/go/') ? 'sponsored noopener nofollow' : undefined}>{cta} →</a></article>)}</div></div></section>
+</BaseLayout>

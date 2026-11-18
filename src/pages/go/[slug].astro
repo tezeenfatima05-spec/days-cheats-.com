@@ -1,0 +1,8 @@
+---
+import { CHECKOUT_URLS } from '../../config/checkout-redirects.mjs';
+const destinations: Record<string, string> = { '7-days-to-die': CHECKOUT_URLS.sevenDays, 'hwid-spoofer': CHECKOUT_URLS.hwidSpoofer, ugc: CHECKOUT_URLS.ugc, 'cloud-dma': CHECKOUT_URLS.cloudDma };
+export function getStaticPaths() { return ['7-days-to-die', 'hwid-spoofer', 'ugc', 'cloud-dma'].map((slug) => ({ params: { slug } })); }
+const destination = destinations[Astro.params.slug ?? ''];
+if (!destination) return Astro.redirect('/404/', 302);
+---
+<!doctype html><html lang="en"><head><meta charset="utf-8" /><meta name="robots" content="noindex, nofollow" /><meta http-equiv="refresh" content={`0;url=${destination}`} /><link rel="canonical" href={`https://dayscheats.com/go/${Astro.params.slug}/`} /><title>Redirecting…</title></head><body><p>Redirecting to the merchant… <a href={destination} rel="sponsored noopener nofollow">Continue</a></p><script define:vars={{ destination }}>location.replace(destination);</script></body></html>

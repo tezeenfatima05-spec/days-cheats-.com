@@ -9,10 +9,10 @@ export type CheckoutProduct = keyof typeof CHECKOUT;
 
 /** URL slug for /go/[slug]/ checkout redirect pages. */
 export const CHECKOUT_SLUGS: Record<CheckoutProduct, string> = {
-  dota2: 'dota-2',
-  skinChanger: 'skin-changer',
+  sevenDays: '7-days-to-die',
   hwidSpoofer: 'hwid-spoofer',
   ugc: 'ugc',
+  cloudDma: 'cloud-dma',
 };
 
 export const CHECKOUT_SLUG_TO_PRODUCT = Object.fromEntries(
@@ -20,28 +20,26 @@ export const CHECKOUT_SLUG_TO_PRODUCT = Object.fromEntries(
 ) as Record<string, CheckoutProduct>;
 
 /** Internal checkout path shown to users (hides external URL on hover). */
-export function checkoutPath(product: CheckoutProduct = 'dota2'): string {
+export function checkoutPath(product: CheckoutProduct = 'sevenDays'): string {
   return `/go/${CHECKOUT_SLUGS[product]}/`;
 }
 
 /** Default product checkout redirect (replaces legacy Discord CTAs). */
-export const PRIMARY_CHECKOUT_PATH = checkoutPath('dota2');
+export const PRIMARY_CHECKOUT_PATH = checkoutPath('sevenDays');
 
 /** Map internal product slugs to checkout redirect paths. */
 export function checkoutForSlug(slug: string): string {
   switch (slug) {
-    case 'unlock-all':
-      return checkoutPath('skinChanger');
     case 'hwid-spoofer':
       return checkoutPath('hwidSpoofer');
     case 'ugc':
     case 'account-recovery':
       return checkoutPath('ugc');
-    case 'lite':
-    case 'pro':
-    case 'elite':
+    case 'cloud-dma':
+      return checkoutPath('cloudDma');
+    case '7-days-to-die':
     default:
-      return checkoutPath('dota2');
+      return checkoutPath('sevenDays');
   }
 }
 
@@ -59,10 +57,7 @@ export function resolveCheckoutHref(href: string): string {
 
   // Legacy / encoded product paths → internal checkout
   if (href.includes('%2Fproducts%2Fcloud-dma') || href.includes('/products/cloud-dma')) {
-    return checkoutPath('dota2');
-  }
-  if (href.includes('%2Fproducts%2Fskin-changer') || href.includes('/products/skin-changer')) {
-    return checkoutPath('skinChanger');
+    return checkoutPath('cloudDma');
   }
   if (href.includes('%2Fproducts%2Fhwid-spoofer') || href.includes('/products/hwid-spoofer')) {
     return checkoutPath('hwidSpoofer');
@@ -70,8 +65,8 @@ export function resolveCheckoutHref(href: string): string {
   if (href.includes('%2Fproducts%2Fugc') || href.includes('/products/ugc')) {
     return checkoutPath('ugc');
   }
-  if (href.includes('%2Fproducts%2Fdota-2') || href.includes('/products/dota-2')) {
-    return checkoutPath('dota2');
+  if (href.includes('%2Fproducts%2F7-days-to-die') || href.includes('/products/7-days-to-die')) {
+    return checkoutPath('sevenDays');
   }
 
   return href;

@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+const articles = [
+  ['best-7dtd-cheats', 'Best 7 Days to Die Cheats for PC — Buying Guide', 'Buying Guides'],
+  ['7dtd-esp-guide', '7 Days to Die ESP Guide — Features Explained', 'Features'],
+  ['7dtd-cheats-features', '7 Days to Die Cheats Features — What Buyers Should Know', 'Features'],
+  ['7dtd-cheats-pricing', '7 Days to Die Cheats Pricing — Available Options', 'Comparisons'],
+  ['7dtd-cheats-safety', '7 Days to Die Cheats Safety — Risks and Considerations', 'Safety & Compatibility'],
+  ['7dtd-console-commands', '7 Days to Die Console Commands and Debug Mode Guide', 'Tutorials'],
+  ['7dtd-fps-boost', '7 Days to Die FPS Boost and Optimization Guide', 'PC Optimization'],
+  ['7dtd-cheats-comparison', '7 Days to Die Cheats Comparison Guide', 'Comparisons'],
+  ['7dtd-pc-requirements', '7 Days to Die PC Requirements and Compatibility', 'Safety & Compatibility'],
+  ['7dtd-updates', '7 Days to Die Updates and Software Compatibility', 'Updates'],
+  ['7dtd-installation', '7 Days to Die Installation Requirements', 'Tutorials'],
+  ['7dtd-cheats-faq', '7 Days to Die Cheats FAQ — Common Questions', 'Buying Guides'],
+];
+---
+<BaseLayout title="7 Days to Die Blogs | PC Guides & Updates" description="Browse 7 Days to Die PC guides covering features, built-in console options, optimisation, updates, and compatibility."><section class="pt-28 pb-16 md:pt-36"><div class="mx-auto max-w-6xl px-5"><p class="text-sm font-semibold uppercase tracking-[.2em] text-primary">Guides & updates</p><h1 class="mt-3 font-[family-name:var(--font-heading)] text-5xl font-bold uppercase">7 Days to Die Blogs</h1><p class="mt-4 max-w-2xl text-muted-foreground">Original PC-focused resources. Use search to filter article titles and choose a category below.</p><input id="blog-search" class="mt-8 w-full rounded-lg border border-border bg-card px-4 py-3" placeholder="Search guides" aria-label="Search articles" /><div class="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">{articles.map(([slug, title, category], index) => <a class="blog-card rounded-xl border border-border bg-card p-5 transition hover:border-primary" href={`/blogs/${slug}/`} data-title={title.toLowerCase()}><p class="text-xs font-semibold uppercase tracking-wider text-primary">{category} · {4 + index % 5} min read</p><h2 class="mt-3 text-xl font-bold leading-tight">{title}</h2><p class="mt-3 text-sm text-muted-foreground">Practical information and context for PC players.</p></a>)}</div></div></section><script is:inline>document.getElementById('blog-search')?.addEventListener('input', (event) => { const q = event.currentTarget.value.toLowerCase(); document.querySelectorAll('.blog-card').forEach((card) => card.style.display = card.dataset.title.includes(q) ? '' : 'none'); });</script></BaseLayout>
